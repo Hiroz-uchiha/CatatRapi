@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../Todolist/Button'
+import {Rating} from "@mui/material";
 
 const Content = ({id, url,judul,isi}) => {
       
@@ -16,6 +17,7 @@ const Content = ({id, url,judul,isi}) => {
                             <p>{isi}</p>
                         </div>
                         <div className='absolute right-0 bottom-2 w-full'>
+                            <Rating name="half-rating" defaultValue={5} precision={1} className=' bottom-5' size='large' />
                             <Button className=" gap-6 "/>  
                         </div>
                     </div>
