@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import "./tailwindcss/output.css"
+import Todolist from './Halaman/Todolist/Todolist'
+import Login from './Halaman/Authorization/Login/Login'
+import Register from './Halaman/Authorization/Register/Register'
+import TambahGambar from './Halaman/TambahGambar/TambahGambar'
+import Button from './Halaman/Todolist/Button'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Todolist /> */}
+      {/* <Login/> */}
+      {/* <Register/> */}
+      <TambahGambar />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
