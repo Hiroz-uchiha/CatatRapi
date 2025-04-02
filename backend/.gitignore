@@ -75,3 +75,8 @@ pids/
 npm-debug.log*
 node-inspect*
 lerna-debug.log*
+
+
+
+# Uploads
+uploads/
