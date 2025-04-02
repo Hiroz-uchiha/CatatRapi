@@ -7,7 +7,7 @@ const Content = ({id, url,judul,isi}) => {
   
     return (
          <div className=''>
-                <div key={id} className='m-3 shadow-md p-2 w-3/5 mx-auto container flex h-72'>
+                <div key={id} className='m-3 shadow-md p-2 w-3/5 mx-auto container flex h-72 bg-white'>
                     <div className=' flex items-center w-1/4 justify-center p-2'>
                         <img src={url} alt="gambar" className=' w-60 h-full' />
                     </div>

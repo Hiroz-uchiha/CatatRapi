@@ -5,15 +5,18 @@ import Login from './Halaman/Authorization/Login/Login'
 import Register from './Halaman/Authorization/Register/Register'
 import TambahGambar from './Halaman/TambahGambar/TambahGambar'
 // import Button from './Halaman/Todolist/Button'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
 import Navbar from './Halaman/Navbar'
 import Beranda from './Halaman/Beranda/Beranda'
 
-const App = () => {
+
+const Layout = () => {
+  const location = useLocation(); 
+  const hideNavbarPaths = ["/login","/register"];
+  
   return (
     <div>
-      <Router>
-        <Navbar />
+      {!hideNavbarPaths.includes(location.pathname)&& <Navbar />}
         <Routes>
           <Route path='/' element={<Beranda />} />
           <Route path='/todolist' element={<Todolist />} />
@@ -21,8 +24,16 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Routes>
-      </Router>
     </div>
+  )
+}
+
+
+const App = () => {
+  return(
+    <Router>
+      <Layout/>
+    </Router>
   )
 }
 
