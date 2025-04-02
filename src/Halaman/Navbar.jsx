@@ -15,7 +15,7 @@ const Navbar = () => {
             <li><Link to="/">Beranda</Link></li>
             <li><Link to="/todolist">Todolist</Link></li>
             <li><Link to="/gambar">Gambar</Link></li>
-            <li className=' text-red-300'>Logout</li>
+            <li className=' text-red-200'>Logout</li>
         </ul>
     </div>
   )
