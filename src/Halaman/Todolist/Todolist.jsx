@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './Button'
 import Inputan from './Inputan'
+import AddItem from '../TambahGambar/AddItem'
 
 const Todolist = () => {
     const data = [ 
@@ -23,8 +24,9 @@ const Todolist = () => {
 
     return (
         <div>
+            <AddItem />
             {data.map((item,index) => (
-                <div className=' bg-gray-200 p-2 flex container mx-auto w-8/12 mt-3' key={index}>
+                <div className='p-2 flex container mx-auto w-8/12 mt-3 shadow-md' key={index}>
                     <Inputan title={item.title} status={item.status} />
                     <Button/>
                 </div>
