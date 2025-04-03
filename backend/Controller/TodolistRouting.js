@@ -1,11 +1,13 @@
 const express = require("express");
 const rute = express.Router();
 const Todolist = require("../Schema/TodolistSchema");
+const verifyToken = require("./Authorization/jwt");
 
 // Get all todos
-rute.get("/todo", async (req, res) => {
+rute.get("/todo",verifyToken, async (req, res) => {
     try {
-        const user = await Todolist.find();
+        const userId = req.user._id
+        const user = await Todolist.find({createdBy : userId});
         res.status(200).json(user);
     } catch (err) {
         res.status(500).json(err);
@@ -13,7 +15,7 @@ rute.get("/todo", async (req, res) => {
 });
 
 // Get todo by ID
-rute.get("/todo/:id", async (req, res) => {
+rute.get("/todo/:id",verifyToken,async (req, res) => {
     try {
         const id = req.params.id;
         const dtId = await Todolist.findById(id);
@@ -28,9 +30,13 @@ rute.get("/todo/:id", async (req, res) => {
 });
 
 // Create new todo
-rute.post("/todo", async (req, res) => {
+rute.post("/todo" ,verifyToken, async (req, res) => {
     try {
-        const todo = new Todolist(req.body);
+        const userId = req.user._id
+        const todo = new Todolist({
+            ...req.body,
+            createdBy : userId
+        });
         const saveTodo = await todo.save();
         res.status(201).json(saveTodo);
     } catch (err) {
@@ -39,7 +45,7 @@ rute.post("/todo", async (req, res) => {
 });
 
 // Update todo by ID
-rute.patch("/todo/:id", async (req, res) => {
+rute.patch("/todo/:id",verifyToken,async (req, res) => {
     try {
         const updateData = await Todolist.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
@@ -53,7 +59,7 @@ rute.patch("/todo/:id", async (req, res) => {
 });
 
 // Delete todo by ID
-rute.delete("/todo/:id", async (req, res) => {
+rute.delete("/todo/:id",verifyToken,async (req, res) => {
     try {
         const id = req.params.id;
         const delTodo = await Todolist.findByIdAndDelete(id);

@@ -11,30 +11,30 @@ import Beranda from './Halaman/Beranda/Beranda'
 
 
 const Layout = () => {
-  const location = useLocation(); 
-  const hideNavbarPaths = ["/login","/register"];
+  // const location = useLocation(); 
+  // const hideNavbarPaths = ["/login","/register"];
   
-  return (
-    <div>
-      {!hideNavbarPaths.includes(location.pathname)&& <Navbar />}
-        <Routes>
-          <Route path='/' element={<Beranda />} />
-          <Route path='/todolist' element={<Todolist />} />
-          <Route path='/gambar' element={<TambahGambar />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-    </div>
-  )
+  // return (
+  //   <div>
+  //     {!hideNavbarPaths.includes(location.pathname)&& <Navbar />}
+  //       <Routes>
+  //         <Route path='/' element={<Beranda />} />
+  //         <Route path='/todolist' element={<Todolist />} />
+  //         <Route path='/gambar' element={<TambahGambar />} />
+  //         <Route path='/login' element={<Login />} />
+  //         <Route path='/register' element={<Register />} />
+  //       </Routes>
+  //   </div>
+  // )
 }
 
 
-const App = () => {
-  return(
-    <Router>
-      <Layout/>
-    </Router>
-  )
-}
+// const App = () => {
+//   return(
+//     <Router>
+//       <Layout/>
+//     </Router>
+//   )
+// }
 
 export default App

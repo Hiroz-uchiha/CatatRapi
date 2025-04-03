@@ -12,6 +12,10 @@ const todolistSchema = new mongoose.Schema({
     updateAt: {
         type: Date,
         default: Date.now
+    },
+    createdBy : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "UserSchema"
     }
 });
 

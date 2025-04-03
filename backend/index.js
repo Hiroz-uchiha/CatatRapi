@@ -12,6 +12,9 @@ const GambarRouting = require("./Controller/GambarRouting")
 
 const path = require("path")
 
+// Authorization
+const userRoutes = require("./Controller/Authorization/RegisterRouting")
+
 mongoose.connect(mongoString);
 const db = mongoose.connection;
 
@@ -26,6 +29,7 @@ db.on("error",(err) => {
 app.use("/todo", TodolistRouting);
 app.use("/uploads", express.static(path.join(__dirname,"uploads")))
 app.use("/images",GambarRouting)
+app.use("/user",userRoutes)
 
 app.listen(3001,() => {
     console.log("Server sudah berjalan")
