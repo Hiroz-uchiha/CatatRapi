@@ -1,7 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigasi = useNavigate();
+
+  const Logout = () => {
+    localStorage.removeItem("token-kedua")
+    navigasi("/login")
+  }
+
   return (
     <div className=' bg-slate-800 w-full h-16 flex justify-between items-center text-white'>
         <ul className=' flex w-1/3 justify-around'>
@@ -15,7 +22,7 @@ const Navbar = () => {
             <li><Link to="/">Beranda</Link></li>
             <li><Link to="/todolist">Todolist</Link></li>
             <li><Link to="/gambar">Gambar</Link></li>
-            <li className=' text-red-200'>Logout</li>
+            <li className=' text-red-200'><button onClick={Logout} >Logout</button></li>
         </ul>
     </div>
   )

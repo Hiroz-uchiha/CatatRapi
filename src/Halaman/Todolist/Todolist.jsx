@@ -11,7 +11,22 @@ const Todolist = () => {
     //1. Ambil Data dari database
     const getData = async() => {
         try{
-            axios.get("http://localhost:3001/todo/todo")
+            // Ambil Token
+            const token = localStorage.getItem("token-kedua")
+            if(!token){
+                console.log("Token tidak ditemukan")
+                setLoading(false)
+                return;
+            }
+
+            // Set header
+            const config = {
+                headers : {
+                    "nama-token" : token
+                }
+            }
+            
+            axios.get("http://localhost:3001/todo/todo",config)
             .then(res => {
                 setData(res.data);
                 setLoading(false)
@@ -47,10 +62,24 @@ const Todolist = () => {
     //3. Tambah data
     const addData = async() => {
        try{
+        // Ambil token
+        const token = localStorage.getItem("token-kedua");
+        if(!token) {
+            console.log("Token invalid")
+            return ;
+        }
+
+        // Set header
+        const config = {
+            headers : {
+                "nama-token" : token
+            }
+        }
+
         const datas = {
             isi : inputValue
         }
-        axios.post("http://localhost:3001/todo/todo",datas)
+        axios.post("http://localhost:3001/todo/todo",datas,config)
         .then(res => {
             setInputValue("");
             getData();
@@ -63,8 +92,18 @@ const Todolist = () => {
     //4. Hapus data
     const deleteData = (id) => {
         try{
+            // Ambil token 
+            const token = localStorage.getItem("token-kedua")
+
+            // Atur header
+            const config = {
+                headers : {
+                    "nama-token" : token
+                }
+            }
+
             // console.log("Delete " + id)
-            axios.delete("http://localhost:3001/todo/todo/" + id)
+            axios.delete("http://localhost:3001/todo/todo/" + id, config)
             .then(res => {
                 getData();
             })

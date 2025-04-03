@@ -8,6 +8,7 @@ import Button from './Halaman/Todolist/Button'
 import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
 import Navbar from './Halaman/Navbar'
 import Beranda from './Halaman/Beranda/Beranda'
+import ProtectedRoute from './Halaman/Authorization/ProtectedRoute'
 
 
 const Layout = () => {
@@ -18,9 +19,9 @@ const Layout = () => {
     <div>
       {!hideNavbarPaths.includes(location.pathname)&& <Navbar />}
         <Routes>
-          <Route path='/' element={<Beranda />} />
-          <Route path='/todolist' element={<Todolist />} />
-          <Route path='/gambar' element={<TambahGambar />} />
+          <Route path='/' element={<ProtectedRoute> <Beranda/> </ProtectedRoute>}/>
+          <Route path='/todolist' element={<ProtectedRoute> <Todolist/> </ProtectedRoute> } />
+          <Route path='/gambar' element={<ProtectedRoute><TambahGambar /> </ProtectedRoute> }/>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Routes>
